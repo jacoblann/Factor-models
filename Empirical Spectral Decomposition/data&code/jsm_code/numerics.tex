@@ -1,0 +1,387 @@
+\documentclass[12pt, leqno, letterpaper]{article}
+
+
+\renewcommand{\baselinestretch}{1.0}
+\usepackage{makecell}
+\usepackage{booktabs}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{comment}
+\usepackage{scrextend}
+\usepackage{pgffor}
+\usepackage{ifxetex}
+
+
+\ifxetex
+  \usepackage[T1]{fontenc}
+  \usepackage[no-math]{fontspec}
+
+  \setmainfont[Scale=1.0]{Kepler Std Light}
+
+  \usepackage[mtpcal,mtphrd,mtpfrak,slantedGreek,noamssymbols,
+  	      subscriptcorrection,zswash]{mtpro2}
+
+  \DeclareMathSizes{12}{12}{9}{7}
+\else
+  \usepackage[T1]{fontenc}
+  \usepackage{lmodern}
+  % to match mt2pro
+  \newcommand{\mbf}{\mathbf} 
+
+\fi
+ 
+
+\usepackage{bm}
+
+\usepackage[scr=boondox, bb = boondox,scrscaled=1]{mathalfa}
+
+\newcommand{\diag}{\textbf{diag}}   
+\newcommand{\var}{\textbf{var}}   
+\newcommand{\Exp}{\textbf{E}}   
+\newcommand{\tsum}{{\textstyle\sum\nolimits}}
+
+\newcommand{\ep}{\epsilon}   
+\newcommand{\tq}[1]{{\textquotedblleft #1\textquotedblright}}
+\newcommand{\s}[1][1]{\hspace{#1pt}}
+
+\newcommand{\np}{n/\s[-1.5] p}
+\newcommand{\qeig}{\calS}
+\newcommand{\seig}{\scrs}
+\newcommand{\Id}{I}
+\newcommand{\mvw}{\hw_\textsc{mv}}
+\newcommand{\sfw}{\hw_\textsc{cp}}
+\newcommand{\hsig}{\hat{\sigma}}
+\newcommand{\hSig}{\bm{\hat}{\Sigma}}
+\newcommand{\bSig}{{\Sigma}}
+\newcommand{\ip}[2]{\langle #1, #2 \rangle}
+
+\newcommand{\hw}{\hat{w}}
+\newcommand{\req}[1]{(\ref{#1})}
+\newcommand{\tru}{\scrV}
+\newcommand{\nes}{\mathbb{1}}
+
+\foreach \x in {A,B,...,Z,a,b,...,z} 
+{
+  \expandafter\xdef\csname cal\x\endcsname{\noexpand 
+	\ensuremath{\noexpand\mathcal{\x}}}
+  \expandafter\xdef\csname scr\x\endcsname{\noexpand 
+	\ensuremath{\noexpand\mathscr{\x}}}
+  \expandafter\xdef\csname bb\x\endcsname{\noexpand 
+	\ensuremath{\noexpand\mathbb{\x}}}
+  \expandafter\xdef\csname rm\x\endcsname{\noexpand 
+	\ensuremath{\noexpand\mathrm{\x}}}
+  \expandafter\xdef\csname bf\x\endcsname{\noexpand 
+	\ensuremath{\noexpand\mbf{\x}}}
+}
+
+\begin{document}
+
+
+\section{Model}
+
+For a factor return $f \in \bbR^q$ and specific return
+$\ep \in \bbR^p$, the excess security return,
+\begin{align}
+ y =  B f + \ep \s .
+\end{align}
+with $f$ and $\ep$ uncorrelated. 
+$\var(y) = B\var(f) B^\top + \var(\ep)$ 
+with $\var(\ep)$ diagonal.
+\input{params.tex}
+
+\begin{figure}[htp!]
+\centering
+\includegraphics[width=0.32\textwidth]{img/vols_alph.pdf}
+\includegraphics[width=0.32\textwidth]{img/Bvol_Bret.pdf}
+\includegraphics[width=0.32\textwidth]{img/svol_sret.pdf}
+\caption{Scatter plots of $\alpha, B \s \Exp(f), \Exp(\ep)$
+versus the corresponding volatilities.
+}
+\label{fig:hist}
+\end{figure}
+
+
+\begin{figure}[htp!]
+\centering
+%\includegraphics[width=0.475\textwidth]{img/block_orig.pdf}
+\includegraphics[width=0.475\textwidth]{img/load_hist.pdf}
+\includegraphics[width=0.475\textwidth]{img/block_post.pdf}
+\caption{Left: Histograms of dense factor exposures
+in $\Xi$. Right: Reordered sparse factor component 
+$\scrS$ of
+$\Xi\Xi^\top = \text{\tq{dense}} + \scrS$}
+\label{fig:exp}
+\end{figure}
+
+\begin{figure}[htp!]
+\centering
+\includegraphics[width=0.475\textwidth]{img/frontier500.pdf}
+\includegraphics[width=0.475\textwidth]{img/frontier1000.pdf}
+\includegraphics[width=0.475\textwidth]{img/frontier2000.pdf}
+\includegraphics[width=0.475\textwidth]{img/frontier3000.pdf}
+\caption{Effient (population) frontiers for each $p$.}
+\label{fig:pf}
+\end{figure}
+
+
+
+\begin{comment}
+\begin{figure}[htp!]
+\centering
+\includegraphics[width=0.49\textwidth]{img/Bret_hist.pdf}
+\includegraphics[width=0.49\textwidth]{img/sret_hist.pdf}
+\caption{\textup{Left panel:} Histogram of $B \Exp(f)$.
+\textup{Right panel:} Histogram of  $\Exp(\ep)$.
+%Histogram of asset specific volatilities
+% (i.e., square roots of the diagonal entries of $\Sv$).
+}
+\label{fig:hist}
+\end{figure}
+
+
+
+\begin{figure}[htp!]
+\centering
+\includegraphics[width=0.45\textwidth]{img/svol_sret.pdf}
+\includegraphics[width=0.45\textwidth]{img/svol_hist.pdf}
+\caption{Histogram of specific vols
+ (i.e., square roots of the diag. entries of $\Sv$).}
+\label{fig:hist}
+\end{figure}
+
+
+\begin{figure}[htp!]
+\centering
+\includegraphics[width=0.45\textwidth]{img/Bvol_Bret.pdf}
+\includegraphics[width=0.45\textwidth]{img/Bvol_hist.pdf}
+\caption{Histogram of specific vols
+ (i.e., square roots of the diag. entries of $\Sv$).}
+\label{fig:hist}
+\end{figure}
+
+\end{comment}
+\clearpage
+
+\section{Results}
+
+For $\hSig$ and estimate of the population covariance
+$\bSig$, we solve
+\begin{align} \label{mqp}
+\begin{aligned}
+ \min_{x \in \bbR^p}\s  \s \frac{1}{2} \s &\ip{x}{\hSig x} \\
+ \ip{m}{w} &\ge \mu \s ,
+\\ \ip{\rme}{w} &= 1 \s ,
+\end{aligned}
+\end{align}
+where the constraint is nonbining in the (rare) cases when the
+minimum variance portfolio return exceeds $\mu$.
+The constraint $m$ is an estimate of $\alpha = \Exp(y)$.
+
+Let $\hw$ be the solution of $\req{mqp}$.
+The optimal portfilio $w$ solves $\req{mqp}$ with $(\bSig,\alpha)$ 
+replacing $(\hSig,m)$. We work with the following metrics.
+\begin{align}
+\tru &= \sqrt{\ip{\hw}{\bSig \hw}} \s[32]
+\big(\text{True Volatility (TV)}\big) \\
+\hat{\sigma} &= \sqrt{\ip{\hw}{\hSig \hw}} \s[32]
+\big(\text{Estimated Volatility (EV)}\big) \\
+\sigma &= \sqrt{\ip{w}{\bSig w}} \s[32]
+\big(\text{Optimal Volatility}\big) \\
+\Pi &= \frac{\hat{\sigma}}{\tru} \s[64]
+\big(\text{Precision}\big)  \\ 
+\scrR &= \frac{\ip{\hw}{\alpha} - r_f}{\tru} \s[32]
+\big(\text{True Sharpe Ratio (TSR)}\big) \\
+\hat{\rho} &= \frac{\ip{\hw}{m} - r_f}{\hsig} \s[32]
+\big(\text{Estimated Sharpe Ratio (ESR)}\big) 
+\\\rho &= \frac{\ip{w}{\alpha} - r_f}{\sigma} \s[32]
+\big(\text{Optimal Sharpe Ratio}\big) 
+\end{align}
+where $r_f$ is the risk free rate.
+
+
+The portfilio $\hw$ decomposes into a minimum variance (MV)
+portfolio $\mvw$ and the characteristic portfilio (CP)
+portfolio $\sfw$,  i.e., 
+\[ \hw = \mvw + \sfw  \]
+This allows for a return to $\hw$ to be decomposed.
+\begin{align}
+&\ip{\hw}{m} \s[32] \big(\text{Estimated Return (ER)}\big) \\
+&\ip{\hw}{\alpha} \s[32] \big(\text{True Return (TR)}\big) \\
+&\ip{\mvw}{m} \s[32] \big(\text{Estimated MV Return (MVER)}\big) \\
+&\ip{\sfw}{m} \s[32] \big(\text{Estimated CP Return (CPER)}\big) \\
+&\ip{\mvw}{\alpha} \s[32] \big(\text{True MV Return (MVER)}\big) \\
+&\ip{\sfw}{\alpha} \s[32] \big(\text{True CP Return (CPER)}\big) 
+\end{align}
+
+
+\input{tab/table0.tex}
+\input{tab/table1.tex}
+\input{tab/table2.tex}
+\input{tab/table3.tex}
+\input{tab/table4.tex}
+
+\begin{figure}[htp!]
+\centering
+\includegraphics[width=0.475\textwidth]{img/est_pca_frontier_p_3000.pdf}
+\includegraphics[width=0.475\textwidth]{img/act_pca_frontier_p_3000.pdf}
+\includegraphics[width=0.475\textwidth]{img/est_mfs_frontier_p_3000.pdf}
+\includegraphics[width=0.475\textwidth]{img/act_mfs_frontier_p_3000.pdf}
+\caption{The actual (using $\bSig$ and $\alpha$) and estimated 
+(using $\hSig$ and $m$) frontiers for the simulation set in 
+Table \ref{tab:vol}.}
+\end{figure}
+\newpage
+\section{Recipes}
+
+
+\begin{enumerate}
+\item Starting with $y = B f + \ep$ we first write our model as
+\[ y = \alpha  + B x +  u \]
+where $x = (f - \Exp(f))$ and $u = \ep - \Exp(\ep)$ so 
+that $x,u$ have zero mean and,
+\[  \alpha = B \Exp(f) + \Exp(\ep) 
+\s[32] \big(\text{and } \Exp(\ep) \perp B \Exp(f) \s . \big)\]
+
+\item From the model above we obtain the $p \times n$
+data (for $\nes = (1, \dots, 1) \in \bbR^n$),
+\begin{align} \label{uY}
+ Y = B \calF^\top + \calE = \alpha \nes_n^\top + 
+B \calX^\top + \calU \s .
+\end{align}
+\item The centered version of the data which we computed by
+\begin{align} \label{cY}  
+\bar{Y} = Y\s ( \Id_n - \nes\nes^\top /n)
+= B \bar{\calX}^\top + \bar{\calU} \s  .
+\end{align}
+where $\bar{\calX} = \calX ( \Id_n - \nes\nes^\top /n)$
+where $\bar{\calU} = \calU ( \Id_n - \nes\nes^\top /n)$. 
+\begin{itemize}
+\item[--] Letting $\bar{x} = \calX^\top \nes/n$ and 
+$\bar{u} = \calU^\top \nes/n$ we see that for each column $x$
+and $z$ of $\calX$ and $\calU$ are of the form 
+$x - \bar{x}$  and $u - \bar{u}$ 
+in the matrices $\bar{\calX}$ and $\bar{\calU}$.
+\item[--]  $\Exp(x - \bar{x})$ and 
+$\Exp(u - \bar{u})$ are not zero in general! (unless
+we have stationary). We assume stationarity 
+for $u$ (i.e. $\Exp(u - \bar{u}) = 0$) but not for $x - \bar{x}$.
+\item We also have two sample covariance matrices.
+\[ S = YY^\top /n \text{ (uncentered)} \s[32]
+ \bar{S} = \bar{Y}\bar{Y}^\top /n \text{ (centered)} \]
+\end{itemize}
+\item The mean vector for the data (that is subtracted during
+centering) is, 
+\begin{align}\label{by}
+ \bar{y} = \frac{Y \nes}{ n \s } 
+=  \alpha + B \bar{x} + \bar{u} \end{align}
+and our goal is to estimate $\alpha \in \bbR^p$. Our
+PCA model will use the constraint, \[ m  = \bar{y} \s . \]
+\item To design the JS estimator we follow the standard
+playbook. We take
+\[ \bar{y}(\rmc) = \rmc \bar{y}  + (1- \rmc) \s g \]
+for a shrinkage target $g$. For the grand mean
+target, $g = \ip{\bar{y}}{\rme}\s \rme /p$,
+%\[ \ip{\bar{y}(\rmc)}{w} = \rmc \ip{\bar{y}}{w}
+% + (1 - \rmc) \ip{\bar{y}}{\rme}/p
+%= \rmc \ip{m}{w} + (1-\rmc)\ip{m}{\rme} /p \]
+\item Our portfolio will hedge out $B \bar{x}$
+asymptotically, so we use JS to correct for $\bar{u}$.
+Standard calculations that minimize
+$|\bar{y}(\rmc)-\alpha + B\bar{x}|^2$ give
+the optimal $\rmc$ as
+\begin{align}
+ \rmc_*
+&= \frac{\ip{\bar{y}-g}{\alpha - B \bar{x}-g}}{|\bar{y}-g|^2}
+\end{align}
+\item Using the LLN behaviour of $\bar{u}$ we have the following
+asymptotics,
+\begin{align}
+\ip{\bar{u}}{\rme}/p, \s[2] \ip{\bar{u}}{\alpha}/p,
+\ip{B\bar{x}}{\bar{u}}/p \to 0
+\end{align}
+\item From the above obtain the asymptotics,
+\begin{align}
+\rmc_* \sim 1 - \frac{|\bar{u}|^2}{|\bar{y}-g|^2}
+\end{align}
+The last term (i.e. $|\bar{u}^2|$) is easy to estimate
+with eigenvalues (see $\nu^2$ below).
+\[  m_{\textsc{js}} = \Big(1 - \frac{\nu^2}{|\bar{y}-g|^2} \Big)
+\s  m 
++ \Big(\frac{\nu^2}{|\bar{y}-g|^2} \Big) \s g
+\s[32]
+\big( g = \ip{\bar{y}}{\rme} \rme / p \big) \]
+
+\item Our MJS estimator below will use $m_\textsc{js}$
+in the Markowitz program.
+
+\newcommand{\js}{\ensuremath{\textsc{jsm}}}
+
+\item Write $\bar{S} = HH^\top + G$ be the spectal decomposition 
+of the (centered) sample covariance matrix
+and let $n_+$ denotes the number of its nonzero eigenvalues,
+\[ \seig_{1,p}^2 \ge \seig_{2,p}^2, \dots, \seig^2_{n_+,p} > 0 \s . \]
+(If $Y$ is full rank $n_+ = n -1$).
+Above $H$ is $p \times q$ matrix of $q$ (spiked) eigenvectors,
+\[  H^\top H = \qeig^2 \]
+where $\qeig^2$ is the $q \times q$ matrix of spiked
+eigenvalues.
+\item We write the constraint of the Markowitz program
+$\req{mqp}$ in matrix form as
+\begin{align} \label{mqp}
+ A = \Big(
+\begin{array}{cc} m_\js & \rme \end{array}
+\Big) \in \bbR^{p \times 2}
+\end{align}
+\item The average noise in the sample covariance is defined as
+\[
+ \nu^2 = 
+\bigg( \frac{1 + \np}{n_+ - q + \np} \bigg)
+\sum_{j > q} \scrs^2_{j,p} \approx
+\frac{\sum_{j > q} \scrs^2_{j,p}}{n_+ -q}
+\s[32] (n_+ > q) \]
+\item We now arrive at our Markowitz-James-Stein estimator.
+Let $A^+ = (A^\top A)^{-1} A^\top$.
+\begin{align*}
+  H^{\text{JSM}} &=  H  C + M  (\Id - C)  \\
+ M &=  A A^+ H \\
+ N &=   \qeig^2- H^\top AA^+ H \\
+C &= (\Id -  N^{-1} \nu^2 )
+\end{align*}
+\item Alternatively, \begin{align*}
+  H^{\text{JSM}} &= H C + M (\Id_q - C) \\
+ M &=  A A^+ H \\
+ N &= (H- M)^\top (H-M) \\
+ C &= \Id - \nu^2 \s N^{-1} 
+\end{align*}
+\item And alternatively again, for $\scrH = H \calS^{-1}$
+(orthonormal columns),\footnote{Brief sketch, We write
+$HC + M(\Id - C) = \scrH \qeig  C
++ \scrM \qeig (\Id - C)$ and off we go with
+\begin{align*}
+\qeig C &= \qeig - \nu^2 \qeig N^{-1} 
+= (\Id - \nu^2 \qeig N^{-1} \qeig^{-1}) \qeig 
+= (\Id - \nu^2 (\qeig^{-1} N \qeig^{-1})^{-1} \qeig^{-2}) \qeig
+= (\Id - \nu^2( N')^{-1} \qeig^{-2}) \qeig  \\
+C' &= \Id - (N')^{-1} \nu^2 \qeig^{-2}   \\
+N' =  \qeig^{-1} N \qeig^{-1} &=  \Id - \qeig^{-1} H^\top AA^+ H \qeig^{-1}
+ =  \Id - \scrH^\top AA^+ \scrH  \\
+\qeig (\Id - C) &
+= \qeig \nu^2 N^{-1} = \nu^2 (\qeig^{-1}N \qeig^{-1})^{-1}
+\qeig^{-1}
+= (N')^{-1} \nu^2 \qeig^{-2} \qeig  = (\Id - C') \qeig
+\end{align*}
+Therefore, $\scrH^{\text{JSM}} = H^\textsc{JSM} \qeig$. }
+\begin{align*}
+  \scrH^{\text{JSM}} &= \scrH C + \scrM (\Id - C) \\
+ \scrM &=  A A^+ \scrH = \scrA \scrA^\top \scrH \\
+ N &=  \Id - \scrH^\top AA^+ \scrH 
+= \Id - \scrH^\top\scrA\scrA^\top \scrH \\
+ C &= I - N^{-1} \nu^2 \qeig^{-2}
+\end{align*}
+\end{enumerate}
+
+\end{document}
+

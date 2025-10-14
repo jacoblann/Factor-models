@@ -1,0 +1,36 @@
+\begin{align} 
+ \var(f) = \left( \begin{array}{ccccccc} 
+$256$ & $17$ & $-9$ & $51$ & $19$ & $6$ & $1$ \\ 
+$17$ & $16$ & $0$ & $0$ & $0$ & $0$ & $0$ \\ 
+$-9$ & $0$ & $4$ & $0$ & $0$ & $0$ & $0$ \\ 
+$51$ & $0$ & $0$ & $400$ & $0$ & $0$ & $0$ \\ 
+$19$ & $0$ & $0$ & $0$ & $225$ & $0$ & $0$ \\ 
+$6$ & $0$ & $0$ & $0$ & $0$ & $100$ & $0$ \\ 
+$1$ & $0$ & $0$ & $0$ & $0$ & $0$ & $25$ \\ 
+\end{array} \right) 
+ \end{align} 
+\begin{align} 
+ \text{corr}(f) = \left( \begin{array}{ccccccc} 
+$1.00$ & $0.28$ & $-0.30$ & $0.16$ & $0.08$ & $0.04$ & $0.02$ \\ 
+$0.28$ & $1.00$ & $-0.11$ & $0.00$ & $0.00$ & $0.00$ & $0.00$ \\ 
+$-0.30$ & $-0.11$ & $1.00$ & $0.00$ & $0.00$ & $0.00$ & $0.00$ \\ 
+$0.16$ & $0.00$ & $0.00$ & $1.00$ & $0.00$ & $0.00$ & $0.00$ \\ 
+$0.08$ & $0.00$ & $0.00$ & $0.00$ & $1.00$ & $0.00$ & $0.00$ \\ 
+$0.04$ & $0.00$ & $0.00$ & $0.00$ & $0.00$ & $1.00$ & $0.00$ \\ 
+$0.02$ & $0.00$ & $0.00$ & $0.00$ & $0.00$ & $0.00$ & $1.00$ \\ 
+\end{array} \right) 
+ \end{align}Factor volatilities $\sigma_f = \sqrt{\diag(\var(f))}$ are given by, 
+ \begin{align} 
+ \sigma_f = \left( \begin{array}{ccccccc} 
+$16.0$ & $4.0$ & $2.0$ & $20.0$ & $15.0$ & $10.0$ & $5.0$ \\ 
+\end{array} \right) 
+ \end{align}with expectations, \begin{align} 
+ \Exp(f) = \left( \begin{array}{ccccccc} 
+$6.00$ & $3.48$ & $4.44$ & $0.00$ & $0.00$ & $0.00$ & $0.00$ \\ 
+\end{array} \right) 
+ \end{align}Population means $\alpha = \Exp(y) = B \Exp(f) + \Exp(\ep)$ have the averages,\begin{align*} 
+p^{-1} \tsum_{i=1}^p \alpha_i = 6.23\quad  p^{-1} \tsum_{i=1}^p (B\Exp(f))_i = 5.98\quad p^{-1} \tsum_{i=1}^p \Exp(\ep_i) = 0.25
+ \end{align*}Population volatilities $\sigma_X =\sqrt{\diag(\var(X))}$ are given by, 
+ \begin{align*} 
+p^{-1} \tsum_{i=1}^p (\sigma_y)_i = 41.27\quad  p^{-1} \tsum_{i=1}^p (\sigma_{Bf})_i = 21.05\quad p^{-1} \tsum_{i=1}^p (\sigma_{\ep})_i = 34.95 \, .
+ \end{align*}
