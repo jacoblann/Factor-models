@@ -9,8 +9,8 @@ import wrds
 # Settings
 INPUT_CSV = 'data_ret.csv'
 DATE_FMT = '%Y-%m-%d'
-START_MONTH = '2020-01'
-END_MONTH = '2021-12'
+START_MONTH = '2023-01'
+END_MONTH = '2024-12'
 MONTH = '3 month'
 LOOKBACK_MONTHS = 3
 OUT_PREFIX_FULL = 'ret_full/'
